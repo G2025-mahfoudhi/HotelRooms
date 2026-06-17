@@ -129,3 +129,59 @@ footer p {
   align-items: center;
   font-weight: 600;
 }
+
+.hotel-hero-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+
+.hero-section {
+  background: #f8f9fa;
+  color: #1a1a2e;
+  padding: 80px 0;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 32px;
+}
+
+.hero-search {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-search .input-group {
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.hero-search .form-control {
+  height: 54px;
+  font-size: 1rem;
+}
+
+.hero-search .btn {
+  height: 54px;
+  border-radius: 0 50px 50px 0 !important;
+}
+
+.hero-search .input-group-text {
+  border-radius: 50px 0 0 50px !important;
+  height: 54px;
+}
+
+.hero-search .input-group-text {
+  border-radius: 0 !important;
+  border-color: #dee2e6;
+}

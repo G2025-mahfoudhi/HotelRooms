@@ -1,92 +1,67 @@
 <%# <h1>Hotels#show</h1> %>
 <%# <p>Find me in app/views/hotels/show.html.erb</p> %>
 
+<% if @hotel.photo.attached? %>
+  <%= image_tag @hotel.photo, class: "hotel-hero-img" %>
+<% else %>
+  <img src="<%= @hotel.photo_url %>" class="hotel-hero-img" alt="<%= @hotel.name %>">
+<% end %>
+
 <div class="container mt-4">
   <h1><%= @hotel.name %></h1>
-  <p><i class="bi bi-geo-alt"></i> <%= @hotel.city %></p>
+  <p class="text-muted"><i class="bi bi-geo-alt me-1"></i><%= @hotel.city %></p>
   <p><%= @hotel.description %></p>
 
-  <h2 class="mt-4">Chambres disponibles</h2>
+  <h2 class="mt-4 mb-3">Chambres disponibles</h2>
   <div class="row">
     <% @rooms.each do |room| %>
       <div class="col-md-4 mb-4">
-        <div class="card">
-          <div class="card-body">
+        <div class="card h-100">
+          <% if room.photo.attached? %>
+            <%= image_tag room.photo, class: "card-img-top" %>
+          <% else %>
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800" class="card-img-top" alt="<%= room.room_type %>">
+          <% end %>
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title"><%= room.room_type %></h5>
-            <p class="card-text"><strong><%= room.price %>€/nuit</strong></p>
-            <%= link_to "Réserver", new_hotel_room_booking_path(@hotel, room), class: "btn btn-primary" %>
+            <p class="card-text fw-bold"><%= room.price %>€/nuit</p>
+            <div class="mt-auto">
+              <% if user_signed_in? %>
+                <%= link_to "Réserver", new_hotel_room_booking_path(@hotel, room), class: "btn btn-primary w-100" %>
+              <% else %>
+                <%= link_to "Connexion pour réserver", new_user_session_path, class: "btn btn-outline-primary w-100" %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
 
-  <h2 class="mt-4">Avis clients</h2>
-  <% @hotel.reviews.each do |review| %>
-    <div class="card mb-2">
-      <div class="card-body">
-        <p><strong><%= review.user.first_name %></strong> — ⭐ <%= review.rating %>/5</p>
-        <p><%= review.comment %></p>
-      </div>
-    </div>
-  <% end %>
-
-  <% if user_signed_in? %>
-    <h3 class="mt-4">Laisser un avis</h3>
-    <%= form_with model: [@hotel, @review] do |f| %>
-      <div class="mb-3">
-        <%= f.label :rating, "Note (1-5)" %>
-        <%= f.number_field :rating, min: 1, max: 5, class: "form-control" %>
-      </div>
-      <div class="mb-3">
-        <%= f.label :comment, "Commentaire" %>
-        <%= f.text_area :comment, class: "form-control" %>
-      </div>
-      <%= f.submit "Envoyer", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
-</div>
-<div class="container mt-4">
-  <h1><%= @hotel.name %></h1>
-  <p><i class="bi bi-geo-alt"></i> <%= @hotel.city %></p>
-  <p><%= @hotel.description %></p>
-
-  <h2 class="mt-4">Chambres disponibles</h2>
-  <div class="row">
-    <% @rooms.each do |room| %>
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><%= room.room_type %></h5>
-            <p class="card-text"><strong><%= room.price %>€/nuit</strong></p>
-            <%= link_to "Réserver", new_hotel_room_booking_path(@hotel, room), class: "btn btn-primary" %>
+  <h2 class="mt-5 mb-3">Avis clients</h2>
+  <% if @hotel.reviews.empty? %>
+    <p class="text-muted">Aucun avis pour le moment.</p>
+  <% else %>
+    <% @hotel.reviews.each do |review| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <strong><%= review.user.first_name %> <%= review.user.last_name %></strong>
+            <span class="text-warning">
+              <% review.rating.times do %><i class="bi bi-star-fill"></i><% end %>
+            </span>
           </div>
+          <p class="mt-2 mb-0"><%= review.comment %></p>
         </div>
       </div>
     <% end %>
-  </div>
-
-  <h2 class="mt-4">Avis clients</h2>
-  <% @hotel.reviews.each do |review| %>
-    <div class="card mb-2">
-      <div class="card-body">
-        <p><strong><%= review.user.first_name %></strong> — ⭐ <%= review.rating %>/5</p>
-        <p><%= review.comment %></p>
-      </div>
-    </div>
   <% end %>
 
   <% if user_signed_in? %>
     <h3 class="mt-4">Laisser un avis</h3>
-    <%= form_with model: [@hotel, @review] do |f| %>
-      <div class="mb-3">
-        <%= f.label :rating, "Note (1-5)" %>
-        <%= f.number_field :rating, min: 1, max: 5, class: "form-control" %>
-      </div>
-      <div class="mb-3">
-        <%= f.label :comment, "Commentaire" %>
-        <%= f.text_area :comment, class: "form-control" %>
-      </div>
+    <%= simple_form_for [@hotel, @review] do |f| %>
+      <%= f.input :rating, label: "Note", as: :select, collection: (1..5), include_blank: false %>
+      <%= f.input :comment, label: "Commentaire", as: :text %>
       <%= f.submit "Envoyer", class: "btn btn-primary" %>
     <% end %>
   <% end %>

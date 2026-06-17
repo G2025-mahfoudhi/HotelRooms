@@ -1,28 +1,61 @@
 <%# <h1>Hotels#index</h1> %>
 <%# <p>Find me in app/views/hotels/index.html.erb</p> %>
-<div class="container mt-4">
-  <h1>Trouvez votre hôtel</h1>
+<div class="hero-section">
+  <div class="container text-center">
+    <h1 class="hero-title">Trouvez votre hôtel idéal</h1>
+    <p class="hero-subtitle">Trouvez et réservez votre hébergement idéal</p>
+    <form action="/" method="get" class="hero-search">
+      <div class="input-group">
+        <span class="input-group-text bg-white border-end-0">
+          <i class="bi bi-search"></i>
+        </span>
+        <input type="text" name="city" class="form-control border-start-0 border-end-0 ps-0" placeholder="Rechercher par ville..." value="<%= params[:city] %>">
+        <% if params[:city].present? %>
+          <%= link_to root_path, class: "input-group-text bg-white border-start-0 border-end-0 text-muted" do %>
+            <i class="bi bi-x-lg"></i>
+          <% end %>
+        <% end %>
+        <button class="btn btn-warning px-4 fw-bold" type="submit">Rechercher</button>
+      </div>
+    </form>
+  </div>
+</div>
 
-  <form action="/" method="get" class="my-4">
-    <div class="input-group">
-      <input type="text" name="city" class="form-control" placeholder="Rechercher par ville..." value="<%= params[:city] %>">
-      <button class="btn btn-primary" type="submit">Rechercher</button>
+<div class="container mt-5">
+  <% if params[:city].present? %>
+    <h2 class="mb-4">Résultats pour "<%= params[:city] %>"</h2>
+  <% else %>
+    <h2 class="mb-4">Nos hôtels</h2>
+  <% end %>
+
+  <% if @hotels.empty? %>
+    <div class="empty-state text-center py-5">
+      <i class="bi bi-building empty-icon"></i>
+      <h4 class="mt-3">Aucun hôtel trouvé</h4>
+      <p class="text-muted">Essayez une autre ville</p>
     </div>
-  </form>
-
-  <div class="row">
-    <% @hotels.each do |hotel| %>
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="<%= hotel.photo_url %>" class="card-img-top" alt="<%= hotel.name %>">
-          <div class="card-body">
-            <h5 class="card-title"><%= hotel.name %></h5>
-            <p class="card-text"><%= hotel.city %></p>
-            <p class="card-text">À partir de <strong><%= hotel.price %>€/nuit</strong></p>
-            <%= link_to "Voir les chambres", hotel_path(hotel), class: "btn btn-outline-primary" %>
+  <% else %>
+    <div class="row">
+      <% @hotels.each do |hotel| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <% if hotel.photo.attached? %>
+              <%= image_tag hotel.photo, class: "card-img-top" %>
+            <% else %>
+              <img src="<%= hotel.photo_url %>" class="card-img-top" alt="<%= hotel.name %>">
+            <% end %>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= hotel.name %></h5>
+              <p class="text-muted mb-1"><i class="bi bi-geo-alt me-1"></i><strong><%= hotel.city %></strong></p>
+              <p class="text-muted small"><%= hotel.description&.truncate(80) %></p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="fw-bold text-primary">À partir de <%= hotel.price %>€/nuit</span>
+                <%= link_to "Voir les chambres", hotel_path(hotel), class: "btn btn-outline-primary btn-sm" %>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
