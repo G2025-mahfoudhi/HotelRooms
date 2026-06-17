@@ -1,0 +1,9 @@
+fr:
+  hello: "Bonjour"
+  activerecord:
+    errors:
+      messages:
+        blank: "est obligatoire"
+        too_short: "est trop court (minimum %{count} caractères)"
+        taken: "est déjà utilisé"
+        invalid: "est invalide"
