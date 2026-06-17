@@ -26,11 +26,7 @@
             <h5 class="card-title"><%= room.room_type %></h5>
             <p class="card-text fw-bold"><%= room.price %>€/nuit</p>
             <div class="mt-auto">
-              <% if user_signed_in? %>
-                <%= link_to "Réserver", new_hotel_room_booking_path(@hotel, room), class: "btn btn-primary w-100" %>
-              <% else %>
-                <%= link_to "Connexion pour réserver", new_user_session_path, class: "btn btn-outline-primary w-100" %>
-              <% end %>
+              <%= link_to "Voir la chambre", hotel_room_path(@hotel, room), class: "btn btn-primary w-100" %>
             </div>
           </div>
         </div>
