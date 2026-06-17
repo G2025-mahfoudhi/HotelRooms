@@ -39,8 +39,8 @@
       <% @hotels.each do |hotel| %>
         <div class="col-md-4 mb-4">
           <div class="card h-100">
-            <% if hotel.photo.attached? %>
-              <%= image_tag hotel.photo, class: "card-img-top" %>
+            <% if hotel.photos.attached? %>
+              <%= image_tag hotel.photos.first, class: "card-img-top" %>
             <% else %>
               <img src="<%= hotel.photo_url %>" class="card-img-top" alt="<%= hotel.name %>">
             <% end %>

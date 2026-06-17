@@ -15,11 +15,11 @@
       <% @bookings.each do |booking| %>
         <div class="col-md-6 mb-4">
           <div class="booking-card">
-            <% if booking.room.photo.attached? %>
-              <%= image_tag booking.room.photo, class: "booking-img" %>
-            <% else %>
-              <img src="<%= booking.room.hotel.photo_url %>" class="booking-img" alt="<%= booking.room.hotel.name %>">
-            <% end %>
+              <% if booking.room.hotel.photos.attached? %>
+                <%= image_tag booking.room.hotel.photos.first, class: "booking-img" %>
+              <% else %>
+                <img src="<%= booking.room.hotel.photo_url %>" class="booking-img" alt="<%= booking.room.hotel.name %>">
+              <% end %>
             <div class="booking-body">
               <h5><%= booking.room.hotel.name %></h5>
               <p><i class="bi bi-door-open me-2"></i><%= booking.room.room_type %></p>

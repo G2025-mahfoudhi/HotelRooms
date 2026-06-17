@@ -6,13 +6,17 @@
   <%= simple_form_for [:admin, @hotel, @room], html: { multipart: true } do |f| %>
     <%= f.input :room_type, label: "Type de chambre" %>
     <%= f.input :price, label: "Prix/nuit (€)" %>
-    <% if @room.photo.attached? %>
+    <% if @room.photos.attached? %>
       <div class="mb-3">
-        <p>Photo actuelle :</p>
-        <%= image_tag @room.photo, height: 150, class: "rounded" %>
+        <p>Photos actuelles :</p>
+        <div class="d-flex gap-2 flex-wrap">
+          <% @room.photos.each do |photo| %>
+            <%= image_tag photo, height: 150, class: "rounded" %>
+          <% end %>
+        </div>
       </div>
     <% end %>
-    <%= f.input :photo, as: :file, label: "Changer la photo" %>
+    <%= f.input :photos, as: :file, label: "Ajouter des photos", input_html: { multiple: true } %>
     <%= f.submit "Mettre à jour", class: "btn btn-primary" %>
   <% end %>
 

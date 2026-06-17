@@ -8,13 +8,17 @@
     <%= f.input :city, label: "Ville" %>
     <%= f.input :description, label: "Description" %>
     <%= f.input :price, label: "Prix/nuit (€)" %>
-    <% if @hotel.photo.attached? %>
+    <% if @hotel.photos.attached? %>
       <div class="mb-3">
-        <p>Photo actuelle :</p>
-        <%= image_tag @hotel.photo, height: 150, class: "rounded" %>
+        <p>Photos actuelles :</p>
+        <div class="d-flex gap-2 flex-wrap">
+          <% @hotel.photos.each do |photo| %>
+            <%= image_tag photo, height: 150, class: "rounded" %>
+          <% end %>
+        </div>
       </div>
     <% end %>
-    <%= f.input :photo, as: :file, label: "Changer la photo" %>
+    <%= f.input :photos, as: :file, label: "Ajouter des photos", input_html: { multiple: true } %>
     <%= f.submit "Mettre à jour", class: "btn btn-primary" %>
   <% end %>
 

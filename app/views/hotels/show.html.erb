@@ -1,8 +1,22 @@
 <%# <h1>Hotels#show</h1> %>
 <%# <p>Find me in app/views/hotels/show.html.erb</p> %>
 
-<% if @hotel.photo.attached? %>
-  <%= image_tag @hotel.photo, class: "hotel-hero-img" %>
+<% if @hotel.photos.attached? %>
+  <div id="hotelCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @hotel.photos.each_with_index do |photo, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <%= image_tag photo, class: "hotel-hero-img d-block w-100" %>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#hotelCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#hotelCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
 <% else %>
   <img src="<%= @hotel.photo_url %>" class="hotel-hero-img" alt="<%= @hotel.name %>">
 <% end %>
@@ -18,8 +32,8 @@
     <% @rooms.each do |room| %>
       <div class="col-md-4 mb-4">
         <div class="card h-100">
-          <% if room.photo.attached? %>
-            <%= image_tag room.photo, class: "card-img-top" %>
+          <% if room.photos.attached? %>
+            <%= image_tag room.photos.first, class: "card-img-top" %>
           <% else %>
             <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800" class="card-img-top" alt="<%= room.room_type %>">
           <% end %>

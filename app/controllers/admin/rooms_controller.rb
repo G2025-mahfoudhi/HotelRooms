@@ -44,6 +44,6 @@ class Admin::RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:room_type, :price, :photo)
+    params.require(:room).permit(:room_type, :price, photos: [])
   end
 end

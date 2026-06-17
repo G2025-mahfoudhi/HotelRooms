@@ -11,7 +11,7 @@
           <%= f.input :city, label: "Ville" %>
           <%= f.input :description, label: "Description" %>
           <%= f.input :price, label: "Prix/nuit (€)" %>
-          <%= f.input :photo, as: :file, label: "Photo de l'hôtel" %>
+          <%= f.input :photo, as: :file, label: "Photo de l'hôtel", input_html: { multiple: true } %>
           <%= f.submit "Créer l'hôtel", class: "btn btn-primary w-100 mt-3" %>
         <% end %>
         <%= link_to "← Retour", admin_hotels_path, class: "btn btn-outline-secondary w-100 mt-2" %>
