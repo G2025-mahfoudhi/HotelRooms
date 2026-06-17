@@ -1,0 +1,205 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+ /* Application styles */
+
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+  padding: 60px 0;
+}
+
+
+body {
+  background-color: #f8f9fa;
+}
+
+
+footer {
+  background-color: #1a1a2e;
+  margin-top: auto;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer p {
+  color: #aaa;
+}
+
+
+.booking-card {
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+
+.booking-card:hover {
+  transform: translateY(-4px);
+}
+
+.booking-header {
+  background-color: #1a1a2e;
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-header h5 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.booking-price {
+  background-color: #f0a500;
+  color: #1a1a2e;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 1rem;
+}
+
+.booking-body {
+  padding: 16px 20px;
+}
+
+.booking-body p {
+  margin-bottom: 8px;
+  color: #444;
+}
+
+
+.empty-state {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  padding: 40px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  color: #f0a500;
+}
+
+.booking-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.booking-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.hotel-hero-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+
+.hero-section {
+  background: #f8f9fa;
+  color: #1a1a2e;
+  padding: 80px 0;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 32px;
+}
+
+.hero-search {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-search .input-group {
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.hero-search .form-control {
+  height: 54px;
+  font-size: 1rem;
+}
+
+.hero-search .btn {
+  height: 54px;
+  border-radius: 0 50px 50px 0 !important;
+}
+
+.hero-search .input-group-text {
+  border-radius: 50px 0 0 50px !important;
+  height: 54px;
+}
+
+.hero-search .input-group-text {
+  border-radius: 0 !important;
+  border-color: #dee2e6;
+}
+
+.room-detail-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+/* dartsass fix */
