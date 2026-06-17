@@ -1,0 +1,28 @@
+<%# <h1>Hotels#index</h1> %>
+<%# <p>Find me in app/views/hotels/index.html.erb</p> %>
+<div class="container mt-4">
+  <h1>Trouvez votre hôtel</h1>
+
+  <form action="/" method="get" class="my-4">
+    <div class="input-group">
+      <input type="text" name="city" class="form-control" placeholder="Rechercher par ville..." value="<%= params[:city] %>">
+      <button class="btn btn-primary" type="submit">Rechercher</button>
+    </div>
+  </form>
+
+  <div class="row">
+    <% @hotels.each do |hotel| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="<%= hotel.photo_url %>" class="card-img-top" alt="<%= hotel.name %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= hotel.name %></h5>
+            <p class="card-text"><%= hotel.city %></p>
+            <p class="card-text">À partir de <strong><%= hotel.price %>€/nuit</strong></p>
+            <%= link_to "Voir les chambres", hotel_path(hotel), class: "btn btn-outline-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<%# <h1>Bookings#new</h1> %>
+<%# <p>Find me in app/views/bookings/new.html.erb</p> %>
+
+<div class="container mt-4">
+  <h1>Réserver une chambre</h1>
+  <p><strong>Hôtel :</strong> <%= @hotel.name %></p>
+  <p><strong>Chambre :</strong> <%= @room.room_type %> — <%= @room.price %>€/nuit</p>
+
+  <%= form_with model: [@hotel, @room, @booking] do |f| %>
+    <div class="mb-3">
+      <%= f.label :start_date, "Date d'arrivée" %>
+      <%= f.date_field :start_date, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :end_date, "Date de départ" %>
+      <%= f.date_field :end_date, class: "form-control" %>
+    </div>
+    <%= f.submit "Confirmer la réservation", class: "btn btn-primary" %>
+  <% end %>
+</div>
