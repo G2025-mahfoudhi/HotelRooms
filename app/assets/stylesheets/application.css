@@ -50,9 +50,17 @@ body {
 
 footer {
   background-color: #1a1a2e;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  margin-top: auto;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 footer p {
