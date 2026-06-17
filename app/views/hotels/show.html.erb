@@ -8,6 +8,7 @@
 <% end %>
 
 <div class="container mt-4">
+  <%= link_to "← Retour à l'accueil", root_path, class: "btn btn-outline-secondary mb-3" %>
   <h1><%= @hotel.name %></h1>
   <p><i class="bi bi-geo-alt me-1 text-warning"></i><strong class="text-warning"><%= @hotel.city %></strong></p>
   <p><%= @hotel.description %></p>

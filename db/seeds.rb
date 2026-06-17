@@ -14,7 +14,7 @@ Room.destroy_all
 Review.destroy_all
 User.destroy_all
 
-# Créer des hôtels
+
 hotel1 = Hotel.create!(
   name: "Hôtel Le Mistral",
   city: "Nice",
@@ -52,18 +52,35 @@ Room.create!(room_type: "Chambre Double", price: 89, hotel: hotel3)
 Room.create!(room_type: "Suite Présidentielle", price: 199, hotel: hotel3)
 
 
-user = User.create!(
+
+user1 = User.create!(
   first_name: "Marie",
   last_name: "Dupont",
   email: "marie@test.com",
   password: "password123"
 )
 
+user2 = User.create!(
+  first_name: "Thomas",
+  last_name: "Martin",
+  email: "thomas@test.com",
+  password: "password123"
+)
 
-Review.create!(rating: 5, comment: "Hôtel magnifique, personnel très accueillant !", user: user, hotel: hotel1)
-Review.create!(rating: 4, comment: "Très bon séjour, chambre propre et confortable.", user: user, hotel: hotel1)
-Review.create!(rating: 5, comment: "Vue superbe, je recommande vivement !", user: user, hotel: hotel2)
-Review.create!(rating: 3, comment: "Bien situé mais un peu bruyant.", user: user, hotel: hotel3)
+user3 = User.create!(
+  first_name: "Sophie",
+  last_name: "Bernard",
+  email: "sophie@test.com",
+  password: "password123"
+)
+
+
+Review.create!(rating: 5, comment: "Hôtel magnifique, personnel très accueillant !", user: user1, hotel: hotel1)
+Review.create!(rating: 4, comment: "Très bon séjour, chambre propre et confortable.", user: user2, hotel: hotel1)
+Review.create!(rating: 5, comment: "Vue superbe, je recommande vivement !", user: user3, hotel: hotel2)
+Review.create!(rating: 3, comment: "Bien situé mais un peu bruyant.", user: user1, hotel: hotel3)
+Review.create!(rating: 4, comment: "Excellent rapport qualité/prix !", user: user2, hotel: hotel2)
+Review.create!(rating: 5, comment: "Séjour inoubliable, on reviendra !", user: user3, hotel: hotel3)
 
 puts "#{Hotel.count} hôtels créés !"
 puts "#{Room.count} chambres créées !"
