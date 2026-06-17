@@ -8,6 +8,13 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 # Créer des hôtels
+# Reset
+Hotel.destroy_all
+Room.destroy_all
+Review.destroy_all
+User.destroy_all
+
+# Créer des hôtels
 hotel1 = Hotel.create!(
   name: "Hôtel Le Mistral",
   city: "Nice",
@@ -32,7 +39,7 @@ hotel3 = Hotel.create!(
   photo_url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
 )
 
-# Créer des chambres
+
 Room.create!(room_type: "Chambre Simple", price: 45, hotel: hotel1)
 Room.create!(room_type: "Chambre Double", price: 75, hotel: hotel1)
 Room.create!(room_type: "Suite", price: 120, hotel: hotel1)
@@ -44,5 +51,20 @@ Room.create!(room_type: "Chambre Simple", price: 59, hotel: hotel3)
 Room.create!(room_type: "Chambre Double", price: 89, hotel: hotel3)
 Room.create!(room_type: "Suite Présidentielle", price: 199, hotel: hotel3)
 
+
+user = User.create!(
+  first_name: "Marie",
+  last_name: "Dupont",
+  email: "marie@test.com",
+  password: "password123"
+)
+
+
+Review.create!(rating: 5, comment: "Hôtel magnifique, personnel très accueillant !", user: user, hotel: hotel1)
+Review.create!(rating: 4, comment: "Très bon séjour, chambre propre et confortable.", user: user, hotel: hotel1)
+Review.create!(rating: 5, comment: "Vue superbe, je recommande vivement !", user: user, hotel: hotel2)
+Review.create!(rating: 3, comment: "Bien situé mais un peu bruyant.", user: user, hotel: hotel3)
+
 puts "#{Hotel.count} hôtels créés !"
 puts "#{Room.count} chambres créées !"
+puts "#{Review.count} avis créés !"
