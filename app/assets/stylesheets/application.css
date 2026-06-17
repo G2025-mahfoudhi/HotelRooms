@@ -50,6 +50,9 @@ body {
 
 footer {
   background-color: #1a1a2e;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 footer p {
