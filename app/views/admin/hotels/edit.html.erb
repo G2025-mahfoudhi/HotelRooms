@@ -1,0 +1,22 @@
+<%# <h1>Admin::Hotels#edit</h1> %>
+<%# <p>Find me in app/views/admin/hotels/edit.html.erb</p> %>
+<div class="container mt-4">
+  <h1>Modifier <%= @hotel.name %></h1>
+
+  <%= simple_form_for [:admin, @hotel], html: { multipart: true } do |f| %>
+    <%= f.input :name, label: "Nom" %>
+    <%= f.input :city, label: "Ville" %>
+    <%= f.input :description, label: "Description" %>
+    <%= f.input :price, label: "Prix/nuit (€)" %>
+    <% if @hotel.photo.attached? %>
+      <div class="mb-3">
+        <p>Photo actuelle :</p>
+        <%= image_tag @hotel.photo, height: 150, class: "rounded" %>
+      </div>
+    <% end %>
+    <%= f.input :photo, as: :file, label: "Changer la photo" %>
+    <%= f.submit "Mettre à jour", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to "Retour", admin_hotels_path, class: "btn btn-outline-secondary mt-2" %>
+</div>

@@ -1,0 +1,36 @@
+<%# <h1>Admin::Hotels#index</h1> %>
+<%# <p>Find me in app/views/admin/hotels/index.html.erb</p> %>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Gestion des hôtels</h1>
+    <%= link_to "Ajouter un hôtel", new_admin_hotel_path, class: "btn btn-primary" %>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Ville</th>
+        <th>Prix/nuit</th>
+        <th>Chambres</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hotels.each do |hotel| %>
+        <tr>
+          <td><%= hotel.name %></td>
+          <td><%= hotel.city %></td>
+          <td><%= hotel.price %>€</td>
+          <td><%= hotel.rooms.count %></td>
+          <td>
+            <%= link_to "Chambres", admin_hotel_rooms_path(hotel), class: "btn btn-sm btn-outline-primary" %>
+            <%= link_to "Modifier", edit_admin_hotel_path(hotel), class: "btn btn-sm btn-outline-warning" %>
+            <%= link_to "Supprimer", admin_hotel_path(hotel), data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?" }, class: "btn btn-sm btn-outline-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

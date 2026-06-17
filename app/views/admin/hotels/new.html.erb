@@ -1,0 +1,14 @@
+<%# <h1>Admin::Hotels#new</h1> %>
+<%# <p>Find me in app/views/admin/hotels/new.html.erb</p> %>
+<div class="container mt-4">
+  <h1>Ajouter une chambre — <%= @hotel.name %></h1>
+
+  <%= simple_form_for [:admin, @hotel, @room], html: { multipart: true } do |f| %>
+    <%= f.input :room_type, label: "Type de chambre" %>
+    <%= f.input :price, label: "Prix/nuit (€)" %>
+    <%= f.input :photo, as: :file, label: "Photo" %>
+    <%= f.submit "Créer la chambre", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to "Retour", admin_hotel_rooms_path(@hotel), class: "btn btn-outline-secondary mt-2" %>
+</div>

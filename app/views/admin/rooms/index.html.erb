@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Chambres — <%= @hotel.name %></h1>
+    <%= link_to "Ajouter une chambre", new_admin_hotel_room_path(@hotel), class: "btn btn-primary" %>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Prix/nuit</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hotel.rooms.each do |room| %>
+        <tr>
+          <td><%= room.room_type %></td>
+          <td><%= room.price %>€</td>
+          <td>
+            <%= link_to "Modifier", edit_admin_hotel_room_path(@hotel, room), class: "btn btn-sm btn-outline-warning" %>
+            <%= link_to "Supprimer", admin_hotel_room_path(@hotel, room), data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?" }, class: "btn btn-sm btn-outline-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Retour aux hôtels", admin_hotels_path, class: "btn btn-outline-secondary" %>
+</div>

@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4">Créer un compte</h2>
+
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= f.input :first_name, label: "Prénom" %>
+            <%= f.input :last_name, label: "Nom" %>
+            <%= f.input :email, label: "Email" %>
+            <%= f.input :password, label: "Mot de passe" %>
+            <%= f.input :password_confirmation, label: "Confirmer le mot de passe" %>
+            <%= f.submit "S'inscrire", class: "btn btn-primary w-100 mt-3" %>
+          <% end %>
+
+          <div class="text-center mt-3">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

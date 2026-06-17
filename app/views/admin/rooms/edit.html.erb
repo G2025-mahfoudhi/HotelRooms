@@ -1,0 +1,20 @@
+<%# <h1>Admin::Rooms#edit</h1> %>
+<%# <p>Find me in app/views/admin/rooms/edit.html.erb</p> %>
+<div class="container mt-4">
+  <h1>Modifier la chambre — <%= @hotel.name %></h1>
+
+  <%= simple_form_for [:admin, @hotel, @room], html: { multipart: true } do |f| %>
+    <%= f.input :room_type, label: "Type de chambre" %>
+    <%= f.input :price, label: "Prix/nuit (€)" %>
+    <% if @room.photo.attached? %>
+      <div class="mb-3">
+        <p>Photo actuelle :</p>
+        <%= image_tag @room.photo, height: 150, class: "rounded" %>
+      </div>
+    <% end %>
+    <%= f.input :photo, as: :file, label: "Changer la photo" %>
+    <%= f.submit "Mettre à jour", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to "Retour", admin_hotel_rooms_path(@hotel), class: "btn btn-outline-secondary mt-2" %>
+</div>
