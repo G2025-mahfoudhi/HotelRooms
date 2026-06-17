@@ -20,9 +20,9 @@ gem "kamal", require: false
 gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
-gem 'devise'
-gem 'simple_form'
-gem 'bootstrap', '~> 5.3'
+gem "devise"
+gem "simple_form"
+gem "bootstrap", "~> 5.3"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -39,6 +39,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem 'dartsass-rails'
-gem 'cloudinary'
-gem 'dotenv-rails'
+gem "dartsass-rails"
+gem "cloudinary"
+gem "dotenv-rails"
