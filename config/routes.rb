@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   resources :hotels, only: [ :index, :show ] do
     resources :reviews, only: [ :create ]
     resources :rooms, only: [ :show ] do
-      resources :bookings, only: [ :new, :create ]
+    resources :bookings, only: [ :new, :create ]
     end
   end
 
-  resources :bookings, only: [ :index ]
+  resources :bookings, only: [ :index, :destroy ]
 
   get "up" => "rails/health#show", as: :rails_health_check
 
