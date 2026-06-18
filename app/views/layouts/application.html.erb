@@ -20,7 +20,7 @@
         <div class="d-flex align-items-center gap-2">
           <% if user_signed_in? %>
             <%= link_to user_path(current_user), class: "d-flex align-items-center text-decoration-none me-1" do %>
-              <% if current_user.avatar.attached? %>
+              <% if current_user.avatar.attached? && !current_user.avatar.attachment.new_record? %>
                 <%= image_tag current_user.avatar, class: "rounded-circle border border-warning", style: "width: 35px; height: 35px; object-fit: cover;" %>
               <% else %>
                 <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
