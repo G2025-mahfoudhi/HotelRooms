@@ -21,7 +21,7 @@
               <img src="<%= booking.room.hotel.photo_url %>" class="booking-img" alt="<%= booking.room.hotel.name %>">
             <% end %>
             <div class="booking-body">
-              <h5><%= booking.room.hotel.name %></h5>
+              <h5><%= link_to booking.room.hotel.name, hotel_path(booking.room.hotel), class: "text-decoration-none text-dark fw-bold" %></h5>
               <p><i class="bi bi-door-open me-2"></i><%= booking.room.room_type %></p>
               <p><i class="bi bi-calendar-check me-2"></i>Arrivée : <%= booking.start_date.strftime("%d/%m/%Y") %></p>
               <p><i class="bi bi-calendar-x me-2"></i>Départ : <%= booking.end_date.strftime("%d/%m/%Y") %></p>
